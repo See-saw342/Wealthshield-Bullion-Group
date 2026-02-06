@@ -59,6 +59,7 @@ router.get("/users", async (req, res) => {
 		email: u.email,
 		role: u.role,
 		accountId: u.accountId,
+		nextOfKin: u.nextOfKin || "",
 		totalGold: u.totalGold || 0,
 		currentValue: u.currentValue || 0,
 		monthlyFees: u.monthlyFees || 0,
@@ -81,6 +82,7 @@ router.get("/users/:id", async (req, res) => {
 		email: user.email,
 		role: user.role,
 		accountId: user.accountId,
+		nextOfKin: user.nextOfKin || "",
 		totalGold: user.totalGold || 0,
 		currentValue: user.currentValue || 0,
 		monthlyFees: user.monthlyFees || 0,
@@ -92,12 +94,13 @@ router.get("/users/:id", async (req, res) => {
 });
 
 router.patch("/users/:id", async (req, res) => {
-	const { totalGold, currentValue, monthlyFees, lastDepositDate, vaultLocation, notes } = req.body;
+	const { totalGold, currentValue, monthlyFees, lastDepositDate, vaultLocation, notes, nextOfKin } = req.body;
 
 	const updateData = {};
 	if (totalGold !== undefined) updateData.totalGold = Number(totalGold);
 	if (currentValue !== undefined) updateData.currentValue = Number(currentValue);
 	if (monthlyFees !== undefined) updateData.monthlyFees = Number(monthlyFees);
+	if (nextOfKin !== undefined) updateData.nextOfKin = nextOfKin;
 	if (lastDepositDate !== undefined) updateData.lastDepositDate = lastDepositDate ? new Date(lastDepositDate) : null;
 	if (vaultLocation !== undefined) updateData.vaultLocation = vaultLocation;
 	if (notes !== undefined) updateData.notes = notes;
@@ -111,6 +114,7 @@ router.patch("/users/:id", async (req, res) => {
 			id: user._id,
 			fullName: user.fullName,
 			email: user.email,
+			nextOfKin: user.nextOfKin || "",
 			totalGold: user.totalGold,
 			currentValue: user.currentValue,
 			monthlyFees: user.monthlyFees,

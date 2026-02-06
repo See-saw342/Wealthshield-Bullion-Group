@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Frontend for Gold Website",
   "scripts": {
-    "dev": "set PORT=3000 && cd wealthshield-backend && npm start"
+    "frontend": "node frontend-server.js",
+    "backend": "cd wealthshield-backend && npm start",
+    "dev": "node dev.js"
   },
   "keywords": [],
   "author": "",

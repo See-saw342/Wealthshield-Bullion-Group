@@ -27,7 +27,8 @@ router.get("/dashboard", auth, async (req, res) => {
       fullName: user.fullName,
       email: user.email,
       accountId: user.accountId,
-      createdAt: user.createdAt
+      createdAt: user.createdAt,
+      nextOfKin: user.nextOfKin
     } : null
   });
 });
@@ -71,7 +72,7 @@ router.post("/withdraw-requests", auth, async (req, res) => {
 });
 
 router.patch("/profile", auth, async (req, res) => {
-  const { fullName, email } = req.body;
+  const { fullName, email, nextOfKin } = req.body;
   if (!fullName || !email) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -81,15 +82,18 @@ router.patch("/profile", auth, async (req, res) => {
     return res.status(409).json({ message: "Email already exists" });
   }
 
+  const updatePayload = { fullName, email };
+  if (nextOfKin !== undefined) updatePayload.nextOfKin = nextOfKin;
+
   const user = await User.findByIdAndUpdate(
     req.user.id,
-    { fullName, email },
+    updatePayload,
     { new: true }
   );
 
   res.json({
     message: "Profile updated",
-    user: { fullName: user.fullName, email: user.email }
+    user: { fullName: user.fullName, email: user.email, nextOfKin: user.nextOfKin }
   });
 });
 

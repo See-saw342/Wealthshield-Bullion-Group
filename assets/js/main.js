@@ -1,7 +1,6 @@
 const token = localStorage.getItem("token");
-const API_BASE = "";
+const API_BASE = "http://localhost:5000";
 if (!token) window.location.href = "login.html";
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const authHeaders = {
@@ -68,15 +67,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const profileEmail = document.getElementById("profileEmail");
         const profileAccountId = document.getElementById("profileAccountId");
         const profileCreatedAt = document.getElementById("profileCreatedAt");
+        const profileNextOfKin = document.getElementById("profileNextOfKin");
         const settingsFullName = document.getElementById("fullName");
         const settingsEmail = document.getElementById("email");
+        const settingsNextOfKin = document.getElementById("nextOfKin");
+        const dashboardUsername = document.getElementById("dashboardUsername");
+        const cardNextOfKin = document.getElementById("cardNextOfKin");
         
         if (profileName) profileName.textContent = data.user.fullName || "N/A";
         if (profileEmail) profileEmail.textContent = data.user.email || "N/A";
         if (profileAccountId) profileAccountId.textContent = data.user.accountId || "N/A";
+        if (profileNextOfKin) profileNextOfKin.textContent = data.user.nextOfKin || "Not set";
         if (profileCreatedAt) profileCreatedAt.textContent = data.user.createdAt ? new Date(data.user.createdAt).toLocaleDateString() : "N/A";
         if (settingsFullName) settingsFullName.value = data.user.fullName || "";
         if (settingsEmail) settingsEmail.value = data.user.email || "";
+        if (settingsNextOfKin) settingsNextOfKin.value = data.user.nextOfKin || "";
+        if (dashboardUsername) dashboardUsername.textContent = data.user.fullName || "User";
+        if (cardNextOfKin) cardNextOfKin.textContent = data.user.nextOfKin || "Not set";
       }
 
       // Update deposit requests table
@@ -221,10 +228,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const fullName = document.getElementById("fullName").value;
       const email = document.getElementById("email").value;
+      const nextOfKin = document.getElementById("nextOfKin").value;
       const response = await fetch(`${API_BASE}/api/user/profile`, {
         method: "PATCH",
         headers: authHeaders,
-        body: JSON.stringify({ fullName, email })
+        body: JSON.stringify({ fullName, email, nextOfKin })
       });
 
       const data = await response.json();
@@ -278,3 +286,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadDashboard();
 
 });
+
+

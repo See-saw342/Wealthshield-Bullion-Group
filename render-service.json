@@ -1,0 +1,24 @@
+{
+  "type": "web_service",
+  "name": "wealthshield-bullion",
+  "ownerId": "tea-d632aksoud1c73fm0c6g",
+  "repo": "https://github.com/See-saw342/Wealthshield-Bullion-Group",
+  "autoDeploy": "yes",
+  "branch": "main",
+  "rootDir": "wealthshield-backend",
+  "serviceDetails": {
+    "env": "node",
+    "plan": "free",
+    "region": "oregon",
+    "envSpecificDetails": {
+      "buildCommand": "npm install",
+      "startCommand": "npm start"
+    },
+    "envVars": [
+      {"key": "PORT", "value": "10000"},
+      {"key": "NODE_ENV", "value": "production"},
+      {"key": "MONGO_URI", "value": "mongodb+srv://Junior:Creative%402468@cluster0.eovqxya.mongodb.net/wealthshield?retryWrites=true&w=majority&appName=Cluster0"},
+      {"key": "JWT_SECRET", "value": "wealthshield_jwt_secret_2026_secure"}
+    ]
+  }
+}

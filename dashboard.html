@@ -27,29 +27,38 @@
 
     <!-- DASHBOARD TAB -->
     <div id="dashboard" class="tab-content active">
-      <div class="dashboard-header">
-        <h1>Dashboard</h1>
-        <button class="btn-primary">Profile</button>
-      </div>
+     <div class="dashboard-header">
+  <h1><span id="dashboardUsername">User</span>'s Dashboard</h1>
+  <button class="btn-primary">Profile</button>
+</div>
 
       <div class="overview-cards">
-        <div class="card">
-          <h3>Total Gold Stored</h3>
-          <p id="cardGoldStored">0 oz</p>
-        </div>
-        <div class="card">
-          <h3>Current Value</h3>
-          <p id="cardCurrentValue">€0</p>
-        </div>
-        <div class="card">
-          <h3>Monthly Fees</h3>
-          <p id="cardMonthlyFees">€0</p>
-        </div>
-        <div class="card">
-          <h3>Last Deposit</h3>
-          <p id="cardLastDeposit">N/A</p>
-        </div>
-      </div>
+  <div class="card">
+    <h3>Total Gold Stored</h3>
+    <p id="cardGoldStored">0 oz</p>
+  </div>
+
+  <div class="card">
+    <h3>Current Value</h3>
+    <p id="cardCurrentValue">€0</p>
+  </div>
+
+  <div class="card">
+    <h3>Monthly Fees</h3>
+    <p id="cardMonthlyFees">€0</p>
+  </div>
+
+  <div class="card">
+    <h3>Last Deposit</h3>
+    <p id="cardLastDeposit">N/A</p>
+  </div>
+
+  <!-- NEXT OF KIN CARD -->
+  <div class="card">
+    <h3>Next of Kin</h3>
+    <p id="cardNextOfKin">Not set</p>
+  </div>
+</div>
 
       <div class="dashboard-balance">
         <h2>Total Gold</h2>
@@ -164,6 +173,7 @@
         <p><strong>Full Name:</strong> <span id="profileName">Loading...</span></p>
         <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
         <p><strong>Account ID:</strong> <span id="profileAccountId">Loading...</span></p>
+        <p><strong>Next of Kin:</strong> <span id="profileNextOfKin">Loading...</span></p>
         <p><strong>Member Since:</strong> <span id="profileCreatedAt">Loading...</span></p>
       </div>
     </div>
@@ -180,6 +190,9 @@
 
     <label for="email">Email</label>
     <input type="email" id="email" placeholder="you@example.com" required>
+
+    <label for="nextOfKin">Next of Kin</label>
+    <input type="text" id="nextOfKin" placeholder="Jane Doe">
 
     <button type="submit" class="btn-primary">Update Info</button>
   </form>

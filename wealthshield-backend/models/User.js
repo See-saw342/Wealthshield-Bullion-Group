@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
   monthlyFees: { type: Number, default: 0 },
   lastDepositDate: { type: Date, default: null },
   vaultLocation: { type: String, default: "Main Vault" },
-  notes: { type: String, default: "" }
+  notes: { type: String, default: "" },
+  nextOfKin: { type: String, default: "" }
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", UserSchema);

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
-  const API_BASE = "";
+  const API_BASE = "http://localhost:5000";
 
   if (!token || role !== "admin") {
     window.location.href = "../login.html";
@@ -143,13 +143,14 @@ document.addEventListener("DOMContentLoaded", () => {
       <tr>
         <td>${user.fullName}</td>
         <td>${user.email}</td>
+        <td>${user.nextOfKin || "Not set"}</td>
         <td>${user.totalGold} oz</td>
         <td>€${(user.currentValue || 0).toLocaleString()}</td>
         <td>€${(user.monthlyFees || 0).toLocaleString()}</td>
         <td>${user.lastDepositDate ? formatDate(user.lastDepositDate) : "N/A"}</td>
         <td><button class="edit-user-btn" data-id="${user.id}">Edit</button></td>
       </tr>
-    `).join("") || "<tr><td colspan=\"7\">No users found</td></tr>";
+    `).join("") || "<tr><td colspan=\"8\">No users found</td></tr>";
 
     // Attach edit button listeners
     tbody.querySelectorAll(".edit-user-btn").forEach(btn => {
@@ -171,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("editTotalGold").value = user.totalGold || 0;
     document.getElementById("editCurrentValue").value = user.currentValue || 0;
     document.getElementById("editMonthlyFees").value = user.monthlyFees || 0;
+    document.getElementById("editNextOfKin").value = user.nextOfKin || "";
     document.getElementById("editLastDepositDate").value = user.lastDepositDate ? new Date(user.lastDepositDate).toISOString().slice(0, 10) : "";
     document.getElementById("editVaultLocation").value = user.vaultLocation || "Main Vault";
     document.getElementById("editNotes").value = user.notes || "";
@@ -203,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         totalGold: Number(document.getElementById("editTotalGold").value),
         currentValue: Number(document.getElementById("editCurrentValue").value),
         monthlyFees: Number(document.getElementById("editMonthlyFees").value),
+        nextOfKin: document.getElementById("editNextOfKin").value,
         lastDepositDate: document.getElementById("editLastDepositDate").value || null,
         vaultLocation: document.getElementById("editVaultLocation").value,
         notes: document.getElementById("editNotes").value
