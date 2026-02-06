@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
-  const API_BASE = "http://localhost:5000";
+  const API_BASE = "";
 
   if (!token || role !== "admin") {
     window.location.href = "../login.html";
