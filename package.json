@@ -1,0 +1,11 @@
+{
+  "name": "gold-website-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Gold Website",
+  "scripts": {
+    "dev": "set PORT=3000 && cd wealthshield-backend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Wealthshield Bullion Group</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <a href="#" class="active" data-tab="dashboard">Dashboard</a>
+    <a href="#" data-tab="deposit">Deposit Gold</a>
+    <a href="#" data-tab="transactions">Transactions</a>
+    <a href="#" data-tab="profile">Profile</a>
+    <a href="#" data-tab="settings">Settings</a>
+    <a href="login.html" class="logout-link">Logout</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="dashboard-main">
+
+    <!-- DASHBOARD TAB -->
+    <div id="dashboard" class="tab-content active">
+      <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <button class="btn-primary">Profile</button>
+      </div>
+
+      <div class="overview-cards">
+        <div class="card">
+          <h3>Total Gold Stored</h3>
+          <p id="cardGoldStored">0 oz</p>
+        </div>
+        <div class="card">
+          <h3>Current Value</h3>
+          <p id="cardCurrentValue">€0</p>
+        </div>
+        <div class="card">
+          <h3>Monthly Fees</h3>
+          <p id="cardMonthlyFees">€0</p>
+        </div>
+        <div class="card">
+          <h3>Last Deposit</h3>
+          <p id="cardLastDeposit">N/A</p>
+        </div>
+      </div>
+
+      <div class="dashboard-balance">
+        <h2>Total Gold</h2>
+        <p id="goldBalance">0 oz</p>
+
+        <h2>Current Value</h2>
+        <p id="goldValue">€0</p>
+
+        <button id="requestDeposit" class="btn-primary">Request Deposit</button>
+        <button id="requestWithdraw" class="btn-outline">Request Withdrawal</button>
+      </div>
+
+      <!-- Recent Transactions on Dashboard -->
+      <div class="recent-transactions">
+        <h2>Recent Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-01-25</td>
+              <td>Deposit</td>
+              <td>5 oz</td>
+              <td class="completed"><p class="status">Completed</p></td>
+            </tr>
+            <tr>
+              <td>2026-01-28</td>
+              <td>Withdraw</td>
+              <td>2 oz</td>
+              <td class="pending"><p class="status">Pending</p></td>
+            </tr>
+            <tr>
+              <td>2026-01-30</td>
+              <td>Deposit</td>
+              <td>3 oz</td>
+              <td class="completed"><p class="status">Completed</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DEPOSIT TAB -->
+    <div id="deposit" class="tab-content">
+      <h2>Deposit Gold</h2>
+      <p>Submit a request to deposit gold into your secure vault.</p>
+      <form id="depositTabForm" class="settings-form">
+        <label for="depositTabAmount">Amount of gold (oz)</label>
+        <input id="depositTabAmount" type="number" step="0.01" min="0.01" required>
+        <button type="submit" class="btn-primary">Submit Deposit Request</button>
+      </form>
+      <h3 style="margin-top:30px;">Your Pending Deposit Requests</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="depositRequestsBody"></tbody>
+      </table>
+    </div>
+
+    <!-- TRANSACTIONS TAB -->
+    <div id="transactions" class="tab-content">
+      <div class="recent-transactions">
+        <h2>Recent Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2026-01-25</td>
+              <td>Deposit</td>
+              <td>5 oz</td>
+              <td class="completed"><p class="status">Completed</p></td>
+            </tr>
+            <tr>
+              <td>2026-01-28</td>
+              <td>Withdraw</td>
+              <td>2 oz</td>
+              <td class="pending"><p class="status">Pending</p></td>
+            </tr>
+            <tr>
+              <td>2026-01-30</td>
+              <td>Deposit</td>
+              <td>3 oz</td>
+              <td class="completed"><p class="status">Completed</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div id="profile" class="tab-content">
+      <h2>Profile</h2>
+      <div class="profile-info">
+        <p><strong>Full Name:</strong> <span id="profileName">Loading...</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+        <p><strong>Account ID:</strong> <span id="profileAccountId">Loading...</span></p>
+        <p><strong>Member Since:</strong> <span id="profileCreatedAt">Loading...</span></p>
+      </div>
+    </div>
+
+  <!-- SETTINGS TAB -->
+<div id="settings" class="tab-content">
+  <h2>Settings</h2>
+
+  <!-- Personal Info Form -->
+  <form id="personalInfoForm" class="settings-form">
+    <h3>Personal Information</h3>
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" placeholder="John Doe" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="you@example.com" required>
+
+    <button type="submit" class="btn-primary">Update Info</button>
+  </form>
+
+  <!-- Change Password Form -->
+  <form id="passwordForm" class="settings-form">
+    <h3>Change Password</h3>
+    <label for="currentPassword">Current Password</label>
+    <input type="password" id="currentPassword" placeholder="••••••••" required>
+
+    <label for="newPassword">New Password</label>
+    <input type="password" id="newPassword" placeholder="••••••••" required>
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="••••••••" required>
+
+    <button type="submit" class="btn-primary">Update Password</button>
+  </form>
+</div>
+
+
+
+<!-- MODALS (unchanged) -->
+<div id="requestDepositModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Request Deposit</h2>
+    <form id="depositRequestForm">
+      <label for="depositAmount">Amount of gold (oz)</label>
+      <input id="depositAmount" type="number" required>
+      <button type="submit" class="btn-primary">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<div id="requestWithdrawModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Request Withdrawal</h2>
+    <form id="withdrawRequestForm">
+      <label for="withdrawAmount">Amount of gold (oz)</label>
+      <input id="withdrawAmount" type="number" required>
+      <button type="submit" class="btn-outline">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
